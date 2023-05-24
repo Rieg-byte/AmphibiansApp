@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.amphibians.R
-import com.example.amphibians.ui.theme.screens.AmphibianViewModel
-import com.example.amphibians.ui.theme.screens.HomeScreen
+import com.example.amphibians.ui.screens.home.HomeViewModel
+import com.example.amphibians.ui.screens.home.HomeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,8 +30,8 @@ fun AmphibiansApp(modifier: Modifier = Modifier){
                 .padding(it),
             color = MaterialTheme.colorScheme.background
         ) {
-            val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
-            HomeScreen(amphibianViewModel.amphibianUiState)
+            val homeViewModel: HomeViewModel = viewModel(factory = HomeViewModel.Factory)
+            HomeScreen(homeViewModel.homeUiState)
         }
     }
 }

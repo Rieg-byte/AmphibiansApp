@@ -1,4 +1,4 @@
-package com.example.amphibians.ui.theme.screens
+package com.example.amphibians.ui.screens.home
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -43,13 +43,13 @@ import com.example.amphibians.ui.theme.AmphibiansTheme
 
 @Composable
 fun HomeScreen(
-    amphibianUiState: AmphibianUiState,
+    homeUiState: HomeUiState,
     modifier: Modifier = Modifier
 ){
-    when(amphibianUiState){
-        is AmphibianUiState.Loading -> LoadingScreen()
-        is AmphibianUiState.Success -> AmphibiansListScreen(amphibianUiState.amphibians)
-        is AmphibianUiState.Error -> ErrorScreen()
+    when(homeUiState){
+        is HomeUiState.Loading -> LoadingScreen()
+        is HomeUiState.Success -> AmphibiansListScreen(homeUiState.amphibians)
+        is HomeUiState.Error -> ErrorScreen()
     }
 
 }

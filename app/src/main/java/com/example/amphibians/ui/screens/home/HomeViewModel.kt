@@ -1,4 +1,4 @@
-package com.example.amphibians.ui.theme.screens
+package com.example.amphibians.ui.screens.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,8 +15,8 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class AmphibianViewModel(private val amphibianRepository: AmphibianRepository): ViewModel() {
-    var amphibianUiState: AmphibianUiState by mutableStateOf(AmphibianUiState.Loading)
+class HomeViewModel(private val amphibianRepository: AmphibianRepository): ViewModel() {
+    var homeUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
         private set
 
     init {
@@ -27,13 +27,13 @@ class AmphibianViewModel(private val amphibianRepository: AmphibianRepository): 
      * Получение информации о амфибиях
      */
     fun getAmphibiansInfo() = viewModelScope.launch {
-        amphibianUiState = AmphibianUiState.Loading
-        amphibianUiState = try {
-            AmphibianUiState.Success(amphibianRepository.getAmphibiansInfo())
+        homeUiState = HomeUiState.Loading
+        homeUiState = try {
+            HomeUiState.Success(amphibianRepository.getAmphibiansInfo())
         } catch (e: IOException) {
-            AmphibianUiState.Error
+            HomeUiState.Error
         } catch (e: HttpException) {
-            AmphibianUiState.Error
+            HomeUiState.Error
         }
     }
 
@@ -42,7 +42,7 @@ class AmphibianViewModel(private val amphibianRepository: AmphibianRepository): 
             initializer {
                 val application = (this[APPLICATION_KEY] as AmphibiansApplication)
                 val amphibiansRepository = application.container.amphibianRepository
-                AmphibianViewModel(amphibianRepository = amphibiansRepository)
+                HomeViewModel(amphibianRepository = amphibiansRepository)
             }
         }
     }
